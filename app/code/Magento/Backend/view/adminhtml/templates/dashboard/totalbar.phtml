@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 use Magento\Backend\Block\Dashboard\Totals;
 use Magento\Framework\Escaper;
@@ -17,14 +18,15 @@ use Magento\Framework\Escaper;
         <ul class="dashboard-totals-list">
             <?php foreach ($block->getTotals() as $total): ?>
                 <li class="dashboard-totals-item">
-                    <span class="dashboard-totals-label"><?= $escaper->escapeHtml($total['label']) ?></span>
+                    <span class="dashboard-totals-label"><?= $escaper->escapeHtml($total['label']); ?></span>
                     <strong class="dashboard-totals-value">
-                        <?= /* @noEscape */ $total['value'] ?>
-                        <span class="dashboard-totals-decimals"><?= /* @noEscape */ $total['decimals'] ?></span>
+                        <?= /* @noEscape */ $total['value']; ?>
+                        <span class="dashboard-totals-decimals"><?= /* @noEscape */ $total['decimals']; ?></span>
                     </strong>
                 </li>
             <?php endforeach; ?>
         </ul>
     </div>
-    <?= $block->getChildHtml() ?>
+
+    <?= $block->getChildHtml(); ?>
 <?php endif; ?>

@@ -3,9 +3,16 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
 ?>
 <?php if ($block->getChildHtml()) :?>
-    <div data-mage-init='{"floatingHeader": {}}' class="page-actions floating-header" <?= /* @noEscape */ $block->getUiId('content-header') ?>>
-        <?= $block->getChildHtml() ?>
+    <div data-mage-init='{"floatingHeader": {}}'
+         class="page-actions floating-header"
+         <?= /* @noEscape */ $block->getUiId('content-header'); ?>>
+        <?= $block->getChildHtml(); ?>
     </div>
 <?php endif; ?>

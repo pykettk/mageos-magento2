@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 use Magento\Backend\ViewModel\ChartDisabled;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
@@ -17,6 +19,12 @@ $viewModel = $block->getViewModel();
 ?>
 <?php if (!$viewModel->isChartEnabled()): ?>
     <div class="dashboard-diagram-disabled">
-        <?= $escaper->escapeHtml(__('Chart is disabled. To enable the chart, click <a href="%1">here</a>.', $escaper->escapeUrl($viewModel->getConfigUrl())), ['a']) ?>
+        <?= $escaper->escapeHtml(
+            __(
+                'Chart is disabled. To enable the chart, click <a href="%1">here</a>.',
+                $escaper->escapeUrl($viewModel->getConfigUrl())
+            ),
+            ['a']
+        ); ?>
     </div>
 <?php endif; ?>

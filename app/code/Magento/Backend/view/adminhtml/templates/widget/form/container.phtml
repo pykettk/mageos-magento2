@@ -3,40 +3,48 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
-/** @var $block \Magento\Backend\Block\Widget\Form\Container */
-/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+use Magento\Backend\Block\Widget\Form\Container;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
+
+/** @var Escaper $escaper */
+/** @var Container $block */
+/** @var SecureHtmlRenderer $secureRenderer */
 ?>
-<?= /* @noEscape */ $block->getFormInitScripts() ?>
+<?= /* @noEscape */ $block->getFormInitScripts(); ?>
 <?php if ($block->getButtonsHtml('header')): ?>
-    <div class="page-form-actions" <?= /* @noEscape */ $block->getUiId('content-header') ?>>
-        <?= $block->getButtonsHtml('header') ?>
+    <div class="page-form-actions" <?= /* @noEscape */ $block->getUiId('content-header'); ?>>
+        <?= $block->getButtonsHtml('header'); ?>
     </div>
 <?php endif; ?>
+
 <?php if ($block->getButtonsHtml('toolbar')): ?>
     <div class="page-main-actions">
         <div class="page-actions">
             <div class="page-actions-buttons">
-                <?= $block->getButtonsHtml('toolbar') ?>
+                <?= $block->getButtonsHtml('toolbar'); ?>
             </div>
         </div>
     </div>
 <?php endif; ?>
-<?= $block->getFormHtml() ?>
+
+<?= $block->getFormHtml(); ?>
+
 <?php if ($block->hasFooterButtons()): ?>
     <div class="content-footer">
-        <p class="form-buttons"><?= $block->getButtonsHtml('footer') ?></p>
+        <p class="form-buttons"><?= $block->getButtonsHtml('footer'); ?></p>
     </div>
 <?php endif; ?>
-<?php $scriptString = <<<script
 
+<?php $scriptString = <<<script
 require([
     'jquery',
     'mage/mage'
 ], function($){
-
     $('#edit_form').mage('form').mage('validation', {
-            validationUrl: '{$block->escapeJs($block->getValidationUrl())}',
+            validationUrl: '{$escaper->escapeJs($block->getValidationUrl())}',
             highlight: function(element) {
                 var detailsElement = $(element).closest('details');
                 if (detailsElement.length && detailsElement.is('.details')) {
@@ -49,8 +57,7 @@ require([
             }
     });
 });
+script; ?>
 
-script;
-?>
-<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
-<?= /* @noEscape */ $block->getFormScripts() ?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false); ?>
+<?= /* @noEscape */ $block->getFormScripts(); ?>

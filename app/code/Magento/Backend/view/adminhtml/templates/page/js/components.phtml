@@ -3,13 +3,12 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-?>
+declare(strict_types=1);
 
-<?php
-/**
- * Declare a list of components and its dependencies to resources
- */
-?>
+use Magento\Framework\View\Element\Js\Components;
 
-<?php /** @var $block \Magento\Framework\View\Element\Js\Components */ ?>
-<?= $block->getChildHtml() ?>
+/** @var Components $block */
+
+/** Declare a list of components and its dependencies to resources */
+?>
+<?= $block->getChildHtml(); ?>
