@@ -14,9 +14,7 @@ use Magento\Framework\View\Helper\SecureHtmlRenderer;
 /** @var SecureHtmlRenderer $secureRenderer */
 
 $element = $block->getElement();
-$fieldId = $element->getHtmlContainerId()
-    ? ' id="' . $escaper->escapeHtmlAttr($element->getHtmlContainerId()) . '"'
-    : '';
+$fieldId = $element->getHtmlContainerId() ? ' id="' . $escaper->escapeHtmlAttr($element->getHtmlContainerId()) . '"' : '';
 $fieldClass = 'field admin__field field-' . $escaper->escapeHtmlAttr($element->getId()) . ' '
     . $escaper->escapeHtmlAttr($element->getCssClass());
 $fieldClass .= $element->getRequired() ? ' required' : '';
@@ -39,10 +37,8 @@ $fieldAttributes = $fieldId . ' class="' . $fieldClass . '" '
         "Magento_Rule/rules",
         "prototype"
     ], function(VarienRulesForm){
-        window.{$escaper->escapeJs($block->getHtmlId())} = new VarienRulesForm(
-            '{$escaper->escapeJs($block->getHtmlId())}',
-            '{$escaper->escapeUrl($block->getNewChildUrl())}'
-        );
+        window.{$escaper->escapeJs($block->getHtmlId())} = new VarienRulesForm('{$escaper->escapeJs($block->getHtmlId())}',
+         '{$escaper->escapeUrl($block->getNewChildUrl())}');
     });
 script;
 ?>
